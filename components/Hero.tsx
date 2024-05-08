@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="mx-auto max-w-7xl  lg:px-8">
           <div className="w-full flex flex-col lg:flex-row">
             <div className="flex justify-between lg:hidden px-4">
-              <a href="#" className="text-3xl text-blue-500 font-bold">
+              <a href="#" className="text-4xl text-blue-700 font-bold">
                 RentGara
               </a>
               <button
