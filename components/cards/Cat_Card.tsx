@@ -1,6 +1,8 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 
+ import { useRouter } from 'next/navigation'
 interface Cat_CardProps {
   name: string;
   url: string;
@@ -8,6 +10,7 @@ interface Cat_CardProps {
 }
 
 export default function Cat_Card({ name, url, description }: Cat_CardProps) {
+  const router=useRouter();
   return (
     <div className="max-w-xs mx-auto bg-white shadow-lg rounded-lg overflow-hidden hover:translate-y-[-5%] transition-transform ease-in-out duration-300">
       <div className="relative pb-2/5 max-w-48 max-h-32">
@@ -21,8 +24,8 @@ export default function Cat_Card({ name, url, description }: Cat_CardProps) {
       </div>
       <div className="p-4 mt-16">
         <h1 className="text-2xl font-semibold mb-2 text-blue-500">{name}</h1>
-        <p className="text-lg text-gray-700">{description}</p>
-        <button className="text-white font-semibold px-4 py-2 bg-blue-500 hover:bg-blue-800 mt-4 rounded-lg shadow-md">
+        <p className="text-lg text-gray-700">{description}</p> 
+        <button className="text-white font-semibold px-4 py-2 bg-blue-500 hover:bg-blue-800 mt-4 rounded-lg shadow-md" onClick={()=>router.push(`categories/${name}`)}>
           Browse
         </button>
       </div>

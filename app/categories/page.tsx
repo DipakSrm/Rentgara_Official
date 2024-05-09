@@ -1,4 +1,5 @@
 import Cat_Card from "@/components/cards/Cat_Card";
+
 interface Cat_CardProps {
   name: string;
   url: string;

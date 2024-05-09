@@ -3,30 +3,27 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { TextAlignJustify } from "@phosphor-icons/react";
-import { usePathname } from "next/navigation";
 
-export default function Cat_Layout({
+export default function Vehicle_Layout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
   const [Open, setOpen] = useState(false);
-const pathname=usePathname();
-console.log("this is pathname",pathname)
+
   const handleOpen = () => {
     setOpen((prev) => !prev);
   };
   return (
     <>
-    {pathname === '/categories' && (
-        <nav
-        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  lg:fixed  bg-inherit"
+      <nav
+        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  lg:fixed  bg-inherit top-0"
         id="topnav">
         <div className="mx-auto max-w-7xl  lg:px-8">
           <div className="w-full flex flex-col lg:flex-row">
             <div className="flex justify-between lg:hidden px-4">
               <a href="#" className="text-4xl text-blue-700 font-bold">
-                Categories
+                Vehicles
               </a>
               <button
                 data-collapse-toggle="navbar"
@@ -61,7 +58,7 @@ console.log("this is pathname",pathname)
               <a
                 href="#"
                 className="hidden lg:flex items-center text-4xl font-semibold text-blue-400">
-                RentGara
+                Vehicles
               </a>
               <div className="flex lg:items-center justify-start flex-col lg:flex-row max-lg:gap-4 lg:flex-1 lg:justify-end">
                 <button className="bg-indigo-50 text-indigo-600 rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm hover:bg-indigo-100">
@@ -75,7 +72,6 @@ console.log("this is pathname",pathname)
           </div>
         </div>
       </nav>
-    )}
       {children}
     </>
   );
