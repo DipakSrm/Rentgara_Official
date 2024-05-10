@@ -93,7 +93,7 @@ export default function Upper(){
   vehicle
 );
     return (
-      <div className="m-10 w-screen max-w-screen-md">
+      <div className="m-10 w-screen max-w-screen-md overflow-hidden ">
         <div className="flex flex-col">
           <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
             <form className="">

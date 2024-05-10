@@ -1,34 +1,34 @@
 import Image from "next/image";
 import React from "react";
-import { Star,MapPinLine } from "@phosphor-icons/react";
-type VehicleCardProps = {
-  car_name: string;
+import { Star, MapPinLine } from "@phosphor-icons/react";
+type ClothCardProps = {
+  cloth_name: string;
   owner_name: string;
   rating: number;
-  car_image: string;
+  cloth_image: string;
   price: number;
   address: string;
-  pp_url:string
+  pp_url: string;
 };
 
-const VehicleCard: React.FC<VehicleCardProps> = ({
-  car_name,
-  owner_name,
-  rating,
-  car_image,
-  price,
-  address,
-  pp_url,
+const VehicleCard: React.FC<ClothCardProps> = ({
+  cloth_name,
+    owner_name,
+    rating,
+    cloth_image,
+    price,
+    address,
+    pp_url,
 }) => {
   return (
-    <div className="w-full  lg:h-[70%] rounded-lg flex flex-col gap-2 hover:translate-y-[-5%] transition-transform duration-300 shadow ease-in-out bg-slate-50">
+    <div className="w-full  lg:h-[90%] rounded-lg flex flex-col gap-2 hover:translate-y-[-5%] transition-transform duration-300 shadow ease-in-out bg-slate-50">
       <div className=" flex justify-center items-center  hover:cursor-pointer overflow-hidden  p-2">
         <div
           style={{ width: "300px", height: "200px" }}
           className="overflow-hidden"
         >
           <Image
-            src={car_image}
+            src={cloth_image}
             alt="this is image"
             height={300}
             width={500}
@@ -40,9 +40,9 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
       <div className=" p-2 flex flex-col gap-4 ">
         <div className="flex items-center justify-between ">
           <h1 className=" lg:text-2xl md:text-xl text-3xl font-semibold text-blue-700 ">
-            {car_name}
+            {cloth_name}
             <br />
-            <span className="text-green-500 ">Rs{price} per hour</span>
+            <span className="text-green-500 ">Rs{price} per day</span>
           </h1>
           <div className="flex justify-start items-center gap-2 ">
             <Star size={32} className="text-yellow-400 w-4" />

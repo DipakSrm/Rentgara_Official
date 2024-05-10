@@ -80,7 +80,7 @@ const data: VehicleCardProps[] = [
   return (
     <section
       id="section"
-      className=" mx-auto h-full grid lg:grid-cols-6 mt-[10%] gap-4"
+      className=" mx-auto h-full grid lg:grid-cols-6 mt-[10%] gap-4 w-full"
     >
       <div className="lg:col-span-6 lg:row-span-1 lg:mt-[1.5rem] md:mt-[2.5rem] mt-[5rem] base:mt-[6rem]">
         <Upper />
