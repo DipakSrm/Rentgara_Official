@@ -9,17 +9,17 @@ export default function Categories() {
   const data: Cat_CardProps[] = [
     {
       name: "Vehicles",
-      url: "/images/vehicle.jpg",
+      url: "/Images/vehicle.jpg",
       description: "Rent all types of vehicles",
     },
     {
       name: "House",
-      url: "/images/house.jpg",
+      url: "/Images/house.jpg",
       description: "Rent house at convinient rate",
     },
     {
       name: "Clothes",
-      url: "/images/clothes.jpg",
+      url: "/Images/clothes.jpg",
       description: "RRent clothes for any occasion",
     },
   ];

@@ -17,10 +17,10 @@ console.log("this is pathname",pathname)
     setOpen((prev) => !prev);
   };
   return (
-    <>
+   <div className="overflow-hidden">
     {pathname === '/categories' && (
         <nav
-        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  lg:fixed  bg-inherit"
+        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  fixed  bg-inherit "
         id="topnav">
         <div className="mx-auto max-w-7xl  lg:px-8">
           <div className="w-full flex flex-col lg:flex-row">
@@ -76,7 +76,7 @@ console.log("this is pathname",pathname)
         </div>
       </nav>
     )}
-      {children}
-    </>
+      {children}</div>
+  
   );
 }

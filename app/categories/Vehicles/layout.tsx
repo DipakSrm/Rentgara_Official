@@ -15,9 +15,10 @@ export default function Vehicle_Layout({
     setOpen((prev) => !prev);
   };
   return (
-    <>
+    <div className="overflow-hidden">
+      {" "}
       <nav
-        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  lg:fixed  bg-inherit top-0 bg-white bg-opacity-[0.9] shadow-sm"
+        className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  fixed  bg-inherit top-0 bg-white bg-opacity-[0.9] shadow-sm"
         id="topnav"
       >
         <div className="mx-auto max-w-7xl  lg:px-8">
@@ -79,6 +80,6 @@ export default function Vehicle_Layout({
         </div>
       </nav>
       {children}
-    </>
+    </div>
   );
 }
