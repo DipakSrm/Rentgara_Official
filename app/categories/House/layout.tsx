@@ -15,7 +15,7 @@ export default function Vehicle_Layout({
     setOpen((prev) => !prev);
   };
   return (
- <div className="overflow-hidden">
+ <div className="">
       <nav
         className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  fixed  bg-inherit top-0 bg-white bg-opacity-[0.9] shadow-sm"
         id="topnav"

@@ -17,7 +17,7 @@ console.log("this is pathname",pathname)
     setOpen((prev) => !prev);
   };
   return (
-   <div className="overflow-hidden">
+   <div className="">
     {pathname === '/categories' && (
         <nav
         className="py-5 border-b-default border-solid border-gray-200 z-10 w-full  fixed  bg-inherit "
