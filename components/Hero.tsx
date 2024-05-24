@@ -9,12 +9,14 @@ import {
   CaretRight,
 } from "@phosphor-icons/react";
 import Hero_Img from "@/public/images/hero.jpg";
+import { useRouter } from "next/navigation";
 export default function Hero() {
   const [Open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen((prev) => !prev);
   };
   console.log("oppen", Open);
+  const router = useRouter();
   return (
     <>
       <nav
@@ -71,10 +73,10 @@ export default function Hero() {
                 RentGara
               </a>
               <div className="flex lg:items-center justify-start flex-col lg:flex-row max-lg:gap-4 lg:flex-1 lg:justify-end">
-                <button className="bg-indigo-50 text-indigo-600 rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm hover:bg-indigo-100">
+                <button onClick={()=>router.push('/SignInPage')} className="bg-indigo-50 text-indigo-600 rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm hover:bg-indigo-100">
                   Login
                 </button>
-                <button className="bg-indigo-600 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm lg:ml-5 hover:bg-indigo-700">
+                <button onClick={()=>router.push('/SignUpPage')} className="bg-indigo-600 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm lg:ml-5 hover:bg-indigo-700">
                   Sign up
                 </button>
               </div>
@@ -102,7 +104,7 @@ export default function Hero() {
             First time in Nepal you can rent different types of services
           </p>
           <Link
-            href="/signup"
+            href="/SignUpPage"
             className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-indigo-600 shadow-xs hover:bg-indigo-700 transition-all duration-500">
             Create account
             <CaretRight size={32} />

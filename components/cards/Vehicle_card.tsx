@@ -42,7 +42,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
           <h1 className=" lg:text-2xl md:text-xl text-3xl font-semibold text-blue-700 ">
             {car_name}
             <br />
-            <span className="text-green-500 ">Rs{price} per hour</span>
+            <span className=" text-sm font-medium text-black">Rs{price} per hour</span>
           </h1>
           <div className="flex justify-start items-center gap-2 ">
             <Star size={32} className="text-yellow-400 w-4" />
