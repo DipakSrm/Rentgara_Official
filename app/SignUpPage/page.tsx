@@ -1,12 +1,17 @@
 "use client";
+import { useAuth } from "@/lib/hooks/authContext";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { toast,ToastContainer } from "react-toastify";
 
 type InputData = {
   First: string;
   Last: string;
   Email: string;
   Password: string;
+  Client_Type: string;
+  CreatedAt:string;
   Ph_Num: string | null;
   Ward?: string | null; // For address form
   Municipality?: string | null; // For address form
@@ -21,24 +26,67 @@ type InputData = {
 export default function SignUpPage() {
   const [isRenter, setIsRenter] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  
+  const router=useRouter()
+  const {setIsLogged}=useAuth()
   console.log("selcee", selectedCategories);
   const {
     register,
     handleSubmit,
     setValue,
-   
+   reset,
     formState: { errors },
   } = useForm<InputData>();
-  const onSubmit: SubmitHandler<InputData> = (data) => {
 
-    if (selectedCategories.length === 0) {
-      data.Category = null;
-    }else{
-      data.Category=selectedCategories;
+
+const onSubmit: SubmitHandler<InputData> = async (data) => {
+  if (isRenter) {
+    data.Client_Type = "Renter";
+    data.CreatedAt = new Date().toISOString();
+  } else {
+    data.Client_Type = "Rentee";
+    data.CreatedAt = new Date().toISOString();
+  }
+
+  if (selectedCategories.length === 0) {
+    data.Category = null;
+  } else {
+    data.Category = selectedCategories;
+  }
+
+  console.log(data);
+
+  try {
+    const response = await fetch("/api/createuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.status === 200) {
+      toast.success(`${ "User created successfully"}`);
+setIsLogged(true)
+    router.push('/categories/Vehicles')
+      ;  // Reset the form only on successful submission
+    } else {
+      const errorData = await response.json();
+      if (
+        errorData.message ===
+        "Document with the requested ID already exists. Try again with a different ID or use ID.unique() to generate a unique ID."
+      ){
+        toast.error("User creation failed: User already exists");
+      }
+       else{
+        toast.error("An unexpected error occurred. Please try again.");
+       }
     }
-    console.log(data);
-  };
+  } catch (error) {
+    console.error("Error creating user:", error);
+    toast.error("An unexpected error occurred. Please try again.");
+  }
+};
+
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -54,6 +102,7 @@ export default function SignUpPage() {
 
   return (
     <>
+    <ToastContainer/>
       <section className="py-1 bg-blueGray-50">
         <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -167,7 +216,7 @@ export default function SignUpPage() {
                       <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Contact Information
                       </h6>
-                      <div className="flex  items-center justify-evenly">
+                      <div className="flex flex-wrap  items-center justify-evenly">
                         <div className="relative  mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -199,7 +248,6 @@ export default function SignUpPage() {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             id="ward"
                             {...register("Ward", { required: true })}
-                           
                           />
                           {errors.Ward && (
                             <span className="text-red-500">
@@ -329,7 +377,7 @@ export default function SignUpPage() {
                               />{" "}
                               {errors.Company && (
                                 <span className="text-red-500">
-                                 Field is required
+                                  Field is required
                                 </span>
                               )}
                             </div>
@@ -350,7 +398,7 @@ export default function SignUpPage() {
                               />
                               {errors.Model && (
                                 <span className="text-red-500">
-                                 Field is required
+                                  Field is required
                                 </span>
                               )}
                             </div>
@@ -372,7 +420,7 @@ export default function SignUpPage() {
                               />
                               {errors.License_Num && (
                                 <span className="text-red-500">
-                                 Field is required
+                                  Field is required
                                 </span>
                               )}
                             </div>
@@ -393,7 +441,7 @@ export default function SignUpPage() {
                               />
                               {errors.Type && (
                                 <span className="text-red-500">
-                                 Field is required
+                                  Field is required
                                 </span>
                               )}
                             </div>
@@ -415,7 +463,7 @@ export default function SignUpPage() {
                               />
                               {errors.Plate_Num && (
                                 <span className="text-red-500">
-                                 Field is required
+                                  Field is required
                                 </span>
                               )}
                             </div>

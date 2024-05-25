@@ -1,3 +1,6 @@
+
+import { ToastContainer } from "react-toastify";
+
 export default function SignUpLayout({
   children,
 }: Readonly<{

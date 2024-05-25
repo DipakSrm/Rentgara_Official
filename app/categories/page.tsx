@@ -1,4 +1,5 @@
 import Cat_Card from "@/components/cards/Cat_Card";
+import Nabvar from "@/components/Navbar";
 
 interface Cat_CardProps {
   name: string;
@@ -26,6 +27,7 @@ export default function Categories() {
   return (
     <>
       {" "}
+      <Nabvar />
       <div className="flex flex-wrap w-full lg:w-[90%] mx-auto p-6 items-center justify-center gap-8 h-screen ">
         {data.map((item, index) => (
           <Cat_Card key={index} {...item} />

@@ -1,5 +1,6 @@
 'use client'
 import VehicleCard from "@/components/cards/Vehicle_card";
+import Nabvar from "@/components/Navbar";
 import Filter from "@/components/vehicles/Filter";
 import Upper from "@/components/vehicles/Upper";
 import React, { useState,useEffect } from "react";
@@ -110,21 +111,24 @@ const data: VehicleCardProps[] = [
 
  console.log("your location coord is",Location)
   return (
-    <section
-      id="section"
-      className=" mx-auto h-full grid lg:grid-cols-6 mt-[10%] gap-4 w-full"
-    >
-      <div className="lg:col-span-6 lg:row-span-1 lg:mt-[1.5rem] md:mt-[2.5rem] mt-[5rem] base:mt-[6rem]">
-        <Upper />
-      </div>
-      <div className="lg:col-span-2 ">
-        <Filter />
-      </div>
-      <div className=" lg:col-span-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-4 p-4  ">
-        {data.map((item, index) => {
-          return <VehicleCard {...item} key={index} />;
-        })}
-      </div>
-    </section>
+    <>
+    <Nabvar/>
+      <section
+        id="section"
+        className=" mx-auto h-full grid lg:grid-cols-6 mt-[10%] gap-4 w-full"
+      >
+        <div className="lg:col-span-6 lg:row-span-1 lg:mt-[1.5rem] md:mt-[2.5rem] mt-[5rem] base:mt-[6rem]">
+          <Upper />
+        </div>
+        <div className="lg:col-span-2 ">
+          <Filter />
+        </div>
+        <div className=" lg:col-span-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-4 p-4  ">
+          {data.map((item, index) => {
+            return <VehicleCard {...item} key={index} />;
+          })}
+        </div>
+      </section>
+    </>
   );
 }
