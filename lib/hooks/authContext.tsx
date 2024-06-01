@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 import { getSession, deleteSession } from "@/auth/route";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface AuthContextType {
   isLogged: boolean;
@@ -17,10 +17,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthProvider = ({ children ,protectedRoutes}: { children: ReactNode ,protectedRoutes:string[]}) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const router = useRouter();
-
+  console.log("protextes",protectedRoutes)
+const path = usePathname();
   useEffect(() => {
     const checkSession = async () => {
       const sessionExists = (await getSession()).success;
@@ -28,6 +29,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     checkSession();
   }, []);
+  useEffect(() => {
+    if (protectedRoutes.includes(path) && !isLogged) {
+     router.push("/_not-found?message=Please login");
+    }
+  }, [isLogged, path, protectedRoutes, router]);
 
   const handleDeleteSession = async () => {
     try {

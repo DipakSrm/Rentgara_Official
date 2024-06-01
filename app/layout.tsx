@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
  import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "@/lib/hooks/authContext";
+import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Rentgara",
@@ -19,7 +20,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider protectedRoutes={[]}>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
