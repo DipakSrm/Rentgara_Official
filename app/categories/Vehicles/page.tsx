@@ -117,7 +117,7 @@ const data: VehicleCardProps[] = [
         id="section"
         className=" mx-auto h-full grid lg:grid-cols-6 mt-[10%] gap-4 w-full"
       >
-        <div className="lg:col-span-6 lg:row-span-1 lg:mt-[1.5rem] md:mt-[2.5rem] mt-[5rem] base:mt-[6rem]">
+        <div className="lg:col-span-6 lg:row-span-1 lg:mt-[1.5rem] md:mt-[2.5rem] mt-[5rem] base:mt-[6rem] bg-red-200 style_vehicle lg:w-[90%] md:w-full  rounded-lg mx-auto">
           <Upper />
         </div>
         <div className="lg:col-span-2 ">

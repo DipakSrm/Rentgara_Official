@@ -1,16 +1,23 @@
 "use client";
 import { useAuth } from "@/lib/hooks/authContext";
-import { TextAlignJustify } from "@phosphor-icons/react";
+import { TextAlignJustify, User } from "@phosphor-icons/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
+
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 
 export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
-  const { isLogged, handleDeleteSession } = useAuth();
-  console.log("this is isLogged", isLogged);
+  const { isLogged, handleDeleteSession,sessionData } = useAuth();
+// this is for profile from shadcn
+  
+
+  console.log("this is isLogged", isLogged,sessionData);
   const router = useRouter();
 
   const handleOpen = () => {
@@ -30,20 +37,50 @@ export default function Navbar() {
       >
         <div className="mx-auto max-w-7xl lg:px-8">
           <div className="w-full flex flex-col lg:flex-row">
-            <div className="flex justify-between lg:hidden px-4">
+            <div className="flex justify-between lg:hidden px-4 ">
               <a href="#" className="text-4xl text-blue-700 font-bold">
                 RentGara
               </a>
-              <button
-                data-collapse-toggle="navbar"
-                type="button"
-                className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                aria-controls="navbar-default"
-                aria-expanded="false"
-                onClick={handleOpen}
-              >
-                <TextAlignJustify size={32} />
-              </button>
+              <div className="flex px-6 gap-4 items-center">
+                <button
+                  data-collapse-toggle="navbar"
+                  type="button"
+                  className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                  aria-controls="navbar-default"
+                  aria-expanded="false"
+                  onClick={handleOpen}
+                >
+                  <TextAlignJustify size={32} />
+                </button>{" "}
+                {isLogged && (
+                  <>
+                    {/* <User size={32} /> */}
+                  
+
+                    {/* dropdown menue for navbar from shadcn */}
+                    <div >
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="outline">{sessionData.name}</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                          <DropdownMenuLabel>Profile</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuCheckboxItem>
+                            Profile
+                          </DropdownMenuCheckboxItem>
+                          <DropdownMenuCheckboxItem>
+                            Orders
+                          </DropdownMenuCheckboxItem>
+                          <DropdownMenuCheckboxItem onClick={handleSignOut}>
+                            SignOut
+                          </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
             <div
               className={`w-full lg:flex justify-between max-lg:bg-white py-5 max-lg:mt-1 max-lg:px-4 max-lg:shadow-lg max-lg:shadow-gray-200 max-lg:h-auto max-lg:overflow-auto transition-all duration-500 delay-200 ${
@@ -101,12 +138,39 @@ export default function Navbar() {
                   </>
                 ) : (
                   <>
-                    <button
-                      onClick={handleSignOut}
-                      className="bg-indigo-600 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm lg:ml-5 hover:bg-indigo-700"
-                    >
-                      SignOut
-                    </button>
+                    <div className="lg:flex  hidden px-6 gap-4 items-center">
+                      <div className="max-h-[40] max-w-[40px] ">
+                        <Image
+                          src="/Images/pp.jpg"
+                          alt="profile"
+                          height={100}
+                          width={100}
+                          className="rounded-full"
+                        ></Image>
+                      </div>
+                      {/* dropdown menue for navbar from shadcn */}
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="outline">{sessionData.name}</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                          <DropdownMenuLabel>Profile</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuCheckboxItem className="hover:bg-white">
+                            Status Bar
+                          </DropdownMenuCheckboxItem>
+                          <DropdownMenuCheckboxItem className="hover:bg-white">
+                            Orders
+                          </DropdownMenuCheckboxItem>
+                          <DropdownMenuCheckboxItem
+                            onClick={handleSignOut}
+                            className="hover:bg-white"
+                          >
+                            SignOut
+                          </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
                   </>
                 )}
               </div>

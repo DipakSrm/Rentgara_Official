@@ -20,6 +20,7 @@ async function signUpAuth({ email, password, name }: { email: string; password: 
 async function signInAuth({ email, password }:{email:string,password:string}) {
   try {
     const response = await account.createEmailPasswordSession(email, password);
+  
     return {
       success: true,
       message: "User signed in successfully",
@@ -53,6 +54,7 @@ async function deleteSession() {
 async function getSession() {
   try {
     const response = await account.get();
+    
     return {
       success: true,
       message: "Session retrieved successfully",
