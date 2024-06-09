@@ -69,4 +69,5 @@ async function getSession() {
   }
 }
 
+
 export { signUpAuth, signInAuth, deleteSession, getSession };

@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/lib/hooks/authContext";
-import { TextAlignJustify, User } from "@phosphor-icons/react";
+import { MagicWand, TextAlignJustify, User } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,11 +13,12 @@ import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMe
 
 export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
-  const { isLogged, handleDeleteSession,sessionData } = useAuth();
+  const { isLogged, handleDeleteSession,sessionData,userData } = useAuth();
 // this is for profile from shadcn
   
 
   console.log("this is isLogged", isLogged,sessionData);
+  console.log("this is userData", userData);
   const router = useRouter();
 
   const handleOpen = () => {
@@ -55,10 +56,9 @@ export default function Navbar() {
                 {isLogged && (
                   <>
                     {/* <User size={32} /> */}
-                  
 
                     {/* dropdown menue for navbar from shadcn */}
-                    <div >
+                    <div>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="outline">{sessionData.name}</Button>
@@ -78,6 +78,14 @@ export default function Navbar() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
+                    {userData.Type === "Renter" && (
+                      <>
+                        <Button className="text-white flex gap-3">
+                          <span>Go to Console</span>
+                          <MagicWand size={32} />
+                        </Button>
+                      </>
+                    )}
                   </>
                 )}
               </div>
@@ -170,6 +178,14 @@ export default function Navbar() {
                           </DropdownMenuCheckboxItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
+                      {userData.Type === "Renter" && (
+                        <>
+                          <Button className="text-white flex gap-3">
+                            <span>Go to Console</span>
+                            <MagicWand size={32} />
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </>
                 )}

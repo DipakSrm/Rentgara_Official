@@ -36,7 +36,7 @@ export default function SignUpPage() {
    reset,
     formState: { errors },
   } = useForm<InputData>();
-
+const {userData}=useAuth()
 
 const onSubmit: SubmitHandler<InputData> = async (data) => {
   if (isRenter) {
@@ -64,10 +64,10 @@ const onSubmit: SubmitHandler<InputData> = async (data) => {
       body: JSON.stringify(data),
     });
 
-    if (response.status === 200) {
+    if (response.status === 200 && userData.$id) {
       toast.success(`${ "User created successfully"}`);
 setIsLogged(true)
-    router.push('/categories/Vehicles')
+    router.push(`/`)
       ;  // Reset the form only on successful submission
     } else {
       const errorData = await response.json();

@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+
 export default function SignInLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,9 @@ export default function SignInLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <section>{children}</section>
+      </body>
     </html>
   );
 }
