@@ -42,23 +42,23 @@ export default function Navbar() {
               <a href="#" className="text-4xl text-blue-700 font-bold">
                 RentGara
               </a>
-              <div className="flex px-6 gap-4 items-center">
+              <div className="flex px-6 gap-4 items-center ">
                 <button
                   data-collapse-toggle="navbar"
                   type="button"
-                  className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                  className={`md:inline-flex ${!isLogged?"flex":"hidden"} items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200`}
                   aria-controls="navbar-default"
                   aria-expanded="false"
                   onClick={handleOpen}
                 >
                   <TextAlignJustify size={32} />
-                </button>{" "}
+                </button>
                 {isLogged && (
                   <>
                     {/* <User size={32} /> */}
 
                     {/* dropdown menue for navbar from shadcn */}
-                    <div>
+                    <div className="md:block hidden">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="outline">{sessionData.name}</Button>
@@ -80,7 +80,7 @@ export default function Navbar() {
                     </div>
                     {userData.Type === "Renter" && (
                       <>
-                        <Button className="text-white flex gap-3">
+                        <Button className="text-white flex gap-3 overflow-hidden">
                           <span>Go to Console</span>
                           <MagicWand size={32} />
                         </Button>

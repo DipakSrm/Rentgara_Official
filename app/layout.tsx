@@ -5,6 +5,7 @@ import "./globals.css";
  import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "@/lib/hooks/authContext";
 import { usePathname } from "next/navigation";
+import Footer_Mob from "@/components/Footer_Mob";
 
 export const metadata: Metadata = {
   title: "Rentgara",

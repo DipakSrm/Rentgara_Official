@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { TextAlignJustify } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
+import Footer_Mob from "@/components/Footer_Mob";
 
 
 export default function Cat_Layout({
@@ -18,9 +19,9 @@ console.log("this is pathname",pathname)
     setOpen((prev) => !prev);
   };
   return (
-   <div className="">
-  
-    {children}</div>
-  
+    <div className="">
+      {children}
+      <Footer_Mob />
+    </div>
   );
 }

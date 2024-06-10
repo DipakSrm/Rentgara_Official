@@ -64,10 +64,10 @@ const onSubmit: SubmitHandler<InputData> = async (data) => {
       body: JSON.stringify(data),
     });
 
-    if (response.status === 200 && userData.$id) {
+    if (response.status === 200) {
       toast.success(`${ "User created successfully"}`);
 setIsLogged(true)
-    router.push(`/`)
+    router.push("/")
       ;  // Reset the form only on successful submission
     } else {
       const errorData = await response.json();
